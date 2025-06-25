@@ -1,6 +1,10 @@
 # Kütüphane Otomasyon Sistemi
 
+Giriş Bilgileri: Personeller için sabit giriş bilgileri: kullanıcı adı:personel şifre:4321
+Öğrenci Bilgileri: veritabanlarında öğrencilere ait bilgiler mevcut. örnek öğrenci bilgisi:  kullanıcı adı:ayse123 şifre:123652
+
 Bu proje, bir kütüphane otomasyon sistemini Windows Forms (C#) ve PostgreSQL veritabanı kullanarak geliştirmek amacıyla hazırlanmıştır.
+
 
 ## 🔧 Kullanılan Teknolojiler
 
