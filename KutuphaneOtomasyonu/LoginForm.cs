@@ -29,10 +29,10 @@ namespace KutuphaneOtomasyonu
         private void TextBox_Click_ClearText(object sender, EventArgs e)
         {
             TextBox txt = sender as TextBox;
-            if (txt != null && txt.Tag == null) // ilk tıklamada siler
+            if (txt != null && txt.Tag == null) 
             {
                 txt.Clear();
-                txt.Tag = "clicked"; // bir daha silinmesin diye işaret
+                txt.Tag = "clicked"; 
             }
         }
         private void LoginForm_Load(object sender, EventArgs e)
@@ -42,10 +42,10 @@ namespace KutuphaneOtomasyonu
             panel1.Anchor = AnchorStyles.None;
 
             {
-                cmbKullaniciTuru.Items.Clear(); // varsa önce temizle
+                cmbKullaniciTuru.Items.Clear(); 
                 cmbKullaniciTuru.Items.Add("Öğrenci");
                 cmbKullaniciTuru.Items.Add("Personel");
-                cmbKullaniciTuru.SelectedIndex = 0; // varsayılan seçim
+                cmbKullaniciTuru.SelectedIndex = 0;
             }
 
             txtSifre.PasswordChar = '*';
@@ -119,7 +119,7 @@ namespace KutuphaneOtomasyonu
                 else if (tur == "Personel")
                 {
                     // Personel veritabanı kontrolü
-                    if (kullaniciAdi == "personel" && sifre == "4321") // burası da veritabanına bağlanacak
+                    if (kullaniciAdi == "personel" && sifre == "4321") 
                     {
                         this.Hide();
                         emanetform persForm = new emanetform();
@@ -156,7 +156,7 @@ namespace KutuphaneOtomasyonu
         {
             this.Hide(); // LoginForm gizlenir
             SifreDegistirForm sifreForm = new SifreDegistirForm();
-            sifreForm.FormClosed += (s, args) => this.Show(); // Form kapanınca Login tekrar gösterilir
+            sifreForm.FormClosed += (s, args) => this.Show(); 
             sifreForm.Show();
         }
 
