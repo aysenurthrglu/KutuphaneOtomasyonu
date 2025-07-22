@@ -46,7 +46,7 @@ namespace KutuphaneOtomasyonu
                 conn.Close();
                 
 
-                OgrencileriListele(); // DataGridView'i güncelle
+                OgrencileriListele(); 
              
             }
 
@@ -111,8 +111,8 @@ namespace KutuphaneOtomasyonu
                         }
 
                         MessageBox.Show("Öğrenci başarıyla silindi.");
-                        OgrencileriListele(); // Yeniden listele
-                        Temizle(); // Alanları temizle
+                        OgrencileriListele(); 
+                        Temizle(); 
                     }
                 }
             }
@@ -187,8 +187,8 @@ namespace KutuphaneOtomasyonu
                         }
 
                         MessageBox.Show("Öğrenci bilgileri başarıyla güncellendi.");
-                        OgrencileriListele(); // tabloyu güncelle
-                        Temizle(); // textbox'ları temizle
+                        OgrencileriListele(); 
+                        Temizle(); 
                     }
                 }
             }
@@ -197,7 +197,7 @@ namespace KutuphaneOtomasyonu
 
         private void dataGridOgrenciler_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Başlık satırı değilse
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridOgrenciler.Rows[e.RowIndex];
 
