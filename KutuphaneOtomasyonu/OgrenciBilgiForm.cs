@@ -25,7 +25,7 @@ namespace KutuphaneOtomasyonu
         }
         private void KitaplariListele()
         {
-            // LoginForm'dan gelen kullanıcı adı
+           
 
             using (var conn = new NpgsqlConnection("Host=localhost;Port=5432;Username=postgres;Password=Ayse123654;Database=kutuphane"))
             {
