@@ -24,22 +24,22 @@ namespace KutuphaneOtomasyonu
         private void TextBox_Click_ClearText(object sender, EventArgs e)
         {
             TextBox txt = sender as TextBox;
-            if (txt != null && txt.Tag == null) // ilk tıklamada siler
+            if (txt != null && txt.Tag == null)
             {
                 txt.Clear();
-                txt.Tag = "clicked"; // bir daha silinmesin diye işaret
+                txt.Tag = "clicked"; 
             }
         }
         private void MailGonder(string alici, string konu, string icerik)
         {
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("seninmailin@gmail.com"); // kendi mail adresin
+            mail.From = new MailAddress("seninmailin@gmail.com"); 
             mail.To.Add(alici);
             mail.Subject = konu;
             mail.Body = icerik;
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("seninmailin@gmail.com", "uygulama_sifresi"); // şifreni buraya yaz
+            smtp.Credentials = new NetworkCredential("seninmailin@gmail.com", "uygulama_sifresi"); 
             smtp.EnableSsl = true;
 
             try
@@ -192,7 +192,7 @@ WHERE o.teslim_edildi = false
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-                    dgvEmanetler.DataSource = dt; // varsa bir DataGridView
+                    dgvEmanetler.DataSource = dt; 
                 }
                 conn.Close();
             }
@@ -218,7 +218,7 @@ WHERE o.teslim_edildi = false
                 {
                     conn.Open();
 
-                    // 1. Kitap stok kontrolü
+                    //  Kitap stok kontrolü
                     string stokSorgu = "SELECT stok FROM kitaplar WHERE kitap_id = @kitapId";
                     using (var cmd = new NpgsqlCommand(stokSorgu, conn))
                     {
@@ -232,7 +232,7 @@ WHERE o.teslim_edildi = false
                         }
                     }
 
-                    // 2. Daha önce teslim edilmemiş aynı kitap kontrolü
+                    //  Daha önce teslim edilmemiş aynı kitap kontrolü
                     string kontrolSql = "SELECT COUNT(*) FROM odunc WHERE ogrenci_id = @ogrenciId AND kitap_id = @kitapId AND teslim_edildi = false";
                     using (var kontrolCmd = new NpgsqlCommand(kontrolSql, conn))
                     {
@@ -247,7 +247,7 @@ WHERE o.teslim_edildi = false
                         }
                     }
 
-                    // 3. Ödünç kaydı ekle
+                    //  Ödünç kaydı ekle
                     string ekleSql = "INSERT INTO odunc (ogrenci_id, kitap_id, alis_tarihi, teslim_tarihi, teslim_edildi) " +
                                      "VALUES (@ogrenciId, @kitapId, @alisTarihi, @teslimTarihi, false)";
                     using (var cmd = new NpgsqlCommand(ekleSql, conn))
@@ -259,7 +259,7 @@ WHERE o.teslim_edildi = false
                         cmd.ExecuteNonQuery();
                     }
 
-                    // 4. Kitap stok azalt
+                    //  Kitap stok azalt
                     string stokAzaltSql = "UPDATE kitaplar SET stok = stok - 1 WHERE kitap_id = @kitapId";
                     using (var cmd = new NpgsqlCommand(stokAzaltSql, conn))
                     {
@@ -272,8 +272,7 @@ WHERE o.teslim_edildi = false
                     conn.Close();
                 }
                 EmanetleriListele();
-                // Listeyi güncellemek istiyorsan buraya:
-                // EmanetleriListele();
+                
             }
 
 
@@ -341,7 +340,7 @@ WHERE o.teslim_edildi = false
                 {
                     conn.Open();
 
-                    // 1. Teslim edilmemiş ödünç kaydı kontrolü
+                    //  Teslim edilmemiş ödünç kaydı kontrolü
                     string kontrolSql = "SELECT COUNT(*) FROM odunc WHERE ogrenci_id = @ogrenciId AND kitap_id = @kitapId AND teslim_edildi = false";
                     using (var kontrolCmd = new NpgsqlCommand(kontrolSql, conn))
                     {
@@ -356,7 +355,7 @@ WHERE o.teslim_edildi = false
                         }
                     }
 
-                    // 2. Teslim edildi olarak işaretle
+                    //  Teslim edildi olarak işaretle
                     string teslimEtSql = "UPDATE odunc SET teslim_edildi = true WHERE ogrenci_id = @ogrenciId AND kitap_id = @kitapId AND teslim_edildi = false";
                     using (var cmd = new NpgsqlCommand(teslimEtSql, conn))
                     {
@@ -365,7 +364,7 @@ WHERE o.teslim_edildi = false
                         cmd.ExecuteNonQuery();
                     }
 
-                    // 3. Stok geri artır
+                    //  Stok geri artır
                     string stokArtirSql = "UPDATE kitaplar SET stok = stok + 1 WHERE kitap_id = @kitapId";
                     using (var cmd = new NpgsqlCommand(stokArtirSql, conn))
                     {
@@ -378,8 +377,8 @@ WHERE o.teslim_edildi = false
                 }
 
                 EmanetleriListele();
-                KitaplariListele();// İstersen listeyi güncelle
-                // EmanetleriListele();
+                KitaplariListele();
+                
             }
 
         }
@@ -442,7 +441,7 @@ WHERE o.ogrenci_id = @ogrenciId";
                 {
                     string secilen = lstOgrenciSonuc.SelectedItem.ToString();
                     string[] parcalar = secilen.Split('-');
-                    txtOgrenciNo.Text = parcalar[0].Trim(); // ID alınıyor
+                    txtOgrenciNo.Text = parcalar[0].Trim(); 
                 }
             }
 
@@ -457,7 +456,7 @@ WHERE o.ogrenci_id = @ogrenciId";
                 string[] parcalar = secilen.Split('-');
                 if (parcalar.Length > 0)
                 {
-                    txtKitapNo.Text = parcalar[0].Trim(); // kitap_id'yi gizli textboxa yaz
+                    txtKitapNo.Text = parcalar[0].Trim(); 
                 }
             }
         }
@@ -489,8 +488,8 @@ WHERE o.ogrenci_id = @ogrenciId";
             {
                 Form1 kitapForm = new Form1();
                 this.Hide();
-                kitapForm.ShowDialog(); // KitapForm'u modal olarak aç
-                this.Show();                    // İsteğe bağlı: KitapForm kapandıktan sonra kitap listesini güncelle
+                kitapForm.ShowDialog(); 
+                this.Show();                   
                 KitaplariListele();
             }
 
