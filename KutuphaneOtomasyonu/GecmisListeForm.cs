@@ -22,22 +22,22 @@ namespace KutuphaneOtomasyonu
         private void TextBox_Click_ClearText(object sender, EventArgs e)
         {
             TextBox txt = sender as TextBox;
-            if (txt != null && txt.Tag == null) // ilk tıklamada siler
+            if (txt != null && txt.Tag == null) 
             {
                 txt.Clear();
-                txt.Tag = "clicked"; // bir daha silinmesin diye işaret
+                txt.Tag = "clicked"; 
             }
         }
         private void MailGonder(string alici, string konu, string icerik)
         {
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("seninmailin@gmail.com"); // kendi mail adresin
+            mail.From = new MailAddress("seninmailin@gmail.com"); 
             mail.To.Add(alici);
             mail.Subject = konu;
             mail.Body = icerik;
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("seninmailin@gmail.com", "uygulama_sifresi"); // şifreni buraya yaz
+            smtp.Credentials = new NetworkCredential("seninmailin@gmail.com", "uygulama_sifresi"); 
             smtp.EnableSsl = true;
 
             try
