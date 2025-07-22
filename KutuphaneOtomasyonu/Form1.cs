@@ -37,7 +37,7 @@ namespace KutuphaneOtomasyonu
     string.IsNullOrWhiteSpace(txtRafNo.Text))
             {
                 MessageBox.Show("Lütfen tüm alanları doldurun!", "Eksik Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // durdur
+                return; 
             }
             using (var conn = new NpgsqlConnection("Host=localhost;Port=5432;Username=postgres;Password=Ayse123654;Database=kutuphane"))
             {
@@ -63,7 +63,7 @@ namespace KutuphaneOtomasyonu
                 KitaplariListele();
             }
         }
-        // BURAYA EKLE 👇👇👇
+        
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -85,7 +85,7 @@ namespace KutuphaneOtomasyonu
                 var da = new NpgsqlDataAdapter("SELECT * FROM kitaplar", conn);
                 var dt = new DataTable();
                 da.Fill(dt);
-                dgvKitaplar.DataSource = dt;  // 👈 Burada "dgvKitaplar" senin DataGridView kontrolünün adıdır. Değiştiyse kendi adını yaz.
+                dgvKitaplar.DataSource = dt;  
                 conn.Close();
             }
         }
@@ -149,7 +149,7 @@ namespace KutuphaneOtomasyonu
 
             int kitapId = Convert.ToInt32(dgvKitaplar.SelectedRows[0].Cells[0].Value);
 
-            // Sayısal alanları doğrula
+            
             int sayfaSayisi, yayinYili;
 
             if (!int.TryParse(txtSayfaSayisi.Text, out sayfaSayisi))
